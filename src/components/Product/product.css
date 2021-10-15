@@ -1,0 +1,23 @@
+.product {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+.product:hover {
+    transform: scale(1.02);
+}
+.img {
+    height: 150px;
+    object-fit: contain;
+}
+.title{
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.description {
+    height: 10rem;
+    line-height: 1.6rem;
+    overflow: hidden;
+    font-size: 0.8rem;
+}

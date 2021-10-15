@@ -2,12 +2,13 @@ import React from 'react';
 import { Alert, Container, Row, Spinner } from 'react-bootstrap';
 import useProducts from '../../hooks/useProducts';
 import Product from '../Product/Product';
+import './products.css';
 
 const Products = () => {
     const { isLoading, products, error } = useProducts();
-    console.log(products)
+
     return (
-        <section>
+        <section className="products">
             <h1 className='text-center mt-1'>Products</h1>
             <Container className="d-flex justify-content-center">
                 {
