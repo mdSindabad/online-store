@@ -6,10 +6,14 @@ import Error from '../../utilities/Error';
 import Loader from '../../utilities/Loader';
 import './productDetails.css';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import useCart from '../../hooks/useCart';
 
 const ProductDetails = () => {
     // router hook
     const { productId } = useParams();
+
+    // cart custom hook
+    const { cartItems, updateCart } = useCart();
 
     const initialState = {
         isLoading: true,
@@ -18,6 +22,7 @@ const ProductDetails = () => {
     };
     // local state
     const [state, setState] = useState(initialState);
+    const [count, setCount] = useState(1);
 
     useEffect(() => {
         axios.get(`https://fakestoreapi.com/products/${productId}`)
@@ -36,6 +41,14 @@ const ProductDetails = () => {
                 })
             })
     }, []);
+
+    const updateCount = (action) => {
+        if (action === "add") {
+            setCount(prevCount => prevCount + 1)
+        } else {
+            setCount(prevCount => prevCount - 1)
+        }
+    };
 
     const { isLoading, product, error } = state;
     const { id, image, title, description, category, price, rating } = product;
@@ -56,12 +69,12 @@ const ProductDetails = () => {
                                 <div className="my-3 d-flex justify-content-between">
                                     <h3>${price}</h3>
                                     <div className="d-flex buttonGroup">
-                                        <Button variant="secondary"><FaMinus /></Button>
-                                        <p className="count">1</p>
-                                        <Button variant="secondary"><FaPlus /></Button>
+                                        <Button className={count === 1 && 'disabled'} onClick={updateCount} variant="secondary"><FaMinus /></Button>
+                                        <p className="count">{count}</p>
+                                        <Button onClick={() => updateCount('add')} variant="secondary"><FaPlus /></Button>
                                     </div>
                                 </div>
-                                <Button variant="success">Add to cart</Button>
+                                <Button onClick={() => updateCart(productId, count)} variant="success">Add to cart</Button>
                             </Col>
                         </Row>
             }
