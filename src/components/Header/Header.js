@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Badge, Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -7,7 +7,7 @@ import useCart from '../../hooks/useCart';
 
 const Header = () => {
     // cart custom hook
-    const { cartItems } = useCart();
+    const { cartProducts } = useCart();
 
     return (
         <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg" className="sticky-top">
@@ -22,7 +22,7 @@ const Header = () => {
                         <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
                         <Nav.Link as={Link} to="/cart" className='cart'>
                             <FaShoppingCart className="fs-4" />
-                            <Badge bg='danger' className='badge'>{cartItems}</Badge>
+                            <Badge bg='danger' className='badge'>{cartProducts.length}</Badge>
                         </Nav.Link>
                     </Nav >
                 </Navbar.Collapse>

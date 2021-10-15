@@ -7,14 +7,14 @@ import Loader from '../../utilities/Loader';
 import './productDetails.css';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
-import useLocalStorage from '../../hooks/useLocalStorage';
+
 
 const ProductDetails = () => {
     // router hook
     const { productId } = useParams();
 
     // cart custom hook
-    const { updateLocalStorage } = useLocalStorage();
+    const { updateLocalStorage } = useCart();
 
     const initialState = {
         isLoading: true,

@@ -7,7 +7,7 @@ import './cart.css';
 const Cart = () => {
     // cart custom hook
     const { removeProduct, cartProducts } = useCart();
-    console.log(cartProducts);
+    // console.log(cartProducts);
 
     // local state
     const initialState = {
