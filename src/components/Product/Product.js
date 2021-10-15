@@ -1,13 +1,20 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 import './product.css';
 
 
 const Product = ({ data }) => {
-    const { image, title, description, category, price, rating } = data;
+    const history = useHistory();
+
+    const { id, image, title, description, category, price, rating } = data;
+
+    const goToDetails = () => {
+        history.push(`/details/${id}`);
+    };
 
     return (
-        <Col md={4} xs={12} className="mt-3">
+        <Col md={4} xs={12} className="mt-3" onClick={goToDetails} >
             <Card className="product">
                 <Card.Img className="img" variant="top" src={image} />
                 <Card.Body>

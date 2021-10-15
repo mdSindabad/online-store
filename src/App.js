@@ -6,6 +6,8 @@ import Products from "./components/Products/Products";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import ProductsProvider from "./contexts/productsContext";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -24,6 +26,12 @@ function App() {
           </Route>
           <Route path='/contact'>
             <Contact />
+          </Route>
+          <Route path='/details/:productId'>
+            <ProductDetails />
+          </Route>
+          <Route path='*'>
+            <NotFound />
           </Route>
         </Switch>
       </Router>

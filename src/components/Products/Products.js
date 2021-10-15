@@ -1,6 +1,8 @@
 import React from 'react';
-import { Alert, Container, Row, Spinner } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import useProducts from '../../hooks/useProducts';
+import Error from '../../utilities/Error';
+import Loader from '../../utilities/Loader';
 import Product from '../Product/Product';
 import './products.css';
 
@@ -13,10 +15,8 @@ const Products = () => {
             <Container className="d-flex justify-content-center">
                 {
                     error ?
-                        <Alert className="mt-5" variant='danger'>
-                            Sorry, Something went wrong!
-                        </Alert> :
-                        isLoading ? <Spinner className="mt-5" animation="border" variant="danger" /> :
+                        <Error /> :
+                        isLoading ? <Loader /> :
                             <Row>
                                 {products.map(product => {
                                     return <Product key={product.id} data={product} />

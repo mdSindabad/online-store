@@ -1,0 +1,13 @@
+
+.details img {
+    margin: 0 auto;
+    width: 80%;
+    object-fit: contain;
+}
+.buttonGroup {
+    border: 2px solid gray;
+    border-radius: 0.5rem;
+}
+.count {
+    margin: auto 1rem;
+}

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg">
+        <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg" className="sticky-top">
             <Container>
-                <Navbar.Brand as={Link} to="/">Online<span className="bg - warning px - 1 text - dark rounded">Store</span></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Online<span className="bg-warning px-1 text-dark rounded">Store</span></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     < Nav className="ms-auto" >
