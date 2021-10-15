@@ -1,19 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { ButtonGroup, Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import Error from '../../utilities/Error';
 import Loader from '../../utilities/Loader';
 import './productDetails.css';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const ProductDetails = () => {
     // router hook
     const { productId } = useParams();
 
     // cart custom hook
-    const { cartItems, updateCart } = useCart();
+    const { updateLocalStorage } = useLocalStorage();
 
     const initialState = {
         isLoading: true,
@@ -74,7 +75,7 @@ const ProductDetails = () => {
                                         <Button onClick={() => updateCount('add')} variant="secondary"><FaPlus /></Button>
                                     </div>
                                 </div>
-                                <Button onClick={() => updateCart(productId, count)} variant="success">Add to cart</Button>
+                                <Button onClick={() => updateLocalStorage(productId, count)} variant="success">Add to cart</Button>
                             </Col>
                         </Row>
             }
