@@ -1,6 +1,8 @@
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Badge, Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
+import './header.css';
 
 const Header = () => {
     return (
@@ -14,6 +16,10 @@ const Header = () => {
                         <Nav.Link as={Link} to="/products">Products</Nav.Link>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
                         <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+                        <Nav.Link as={Link} to="/cart" className='cart'>
+                            <FaShoppingCart className="fs-4" />
+                            <Badge bg='danger' className='badge'>1</Badge>
+                        </Nav.Link>
                     </Nav >
                 </Navbar.Collapse>
             </Container >

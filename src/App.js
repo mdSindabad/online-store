@@ -8,6 +8,7 @@ import Contact from "./components/Contact/Contact";
 import ProductsProvider from "./contexts/productsContext";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import NotFound from "./components/NotFound/NotFound";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path='/contact'>
             <Contact />
+          </Route>
+          <Route path='/cart'>
+            <Cart />
           </Route>
           <Route path='/details/:productId'>
             <ProductDetails />
