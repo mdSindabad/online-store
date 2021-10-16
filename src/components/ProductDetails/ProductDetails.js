@@ -13,7 +13,7 @@ const ProductDetails = () => {
     // router hook
     const { productId } = useParams();
 
-    // cart custom hook
+    // localstorage hooks
     const { updateLocalStorage } = useCart();
 
     const initialState = {
@@ -42,7 +42,6 @@ const ProductDetails = () => {
                 })
             })
     }, []);
-
     const updateCount = (action) => {
         if (action === "add") {
             setCount(prevCount => prevCount + 1)
@@ -51,8 +50,9 @@ const ProductDetails = () => {
         }
     };
 
+    // destructure states
     const { isLoading, product, error } = state;
-    const { id, image, title, description, category, price, rating } = product;
+    const { image, title, description, category, price, rating } = product;
 
     return (
         <Container className="d-flex justify-content-center py-3 details">
@@ -66,7 +66,9 @@ const ProductDetails = () => {
                             </Col>
                             <Col xs={12} md={7}>
                                 <h1 className='my-3'>{title}</h1>
+                                <h5 className="text-primary text-capitalize">{category}</h5>
                                 <p>{description}</p>
+                                <p>Rating: <span className="fw-bold">{rating.rate}</span></p>
                                 <div className="my-3 d-flex justify-content-between">
                                     <h3>${price}</h3>
                                     <div className="d-flex buttonGroup">

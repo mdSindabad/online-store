@@ -5,12 +5,11 @@ import useProducts from "../hooks/useProducts";
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-
-    // products hook
+    // product context
     const { products } = useProducts();
 
-    // // local state
-    const [cartProducts, setCartProducts] = useState([]);
+    // local state
+    const [cart, setCart] = useState([]);
 
     // get cart from local storage
     const getLocalStorage = () => {
@@ -23,12 +22,14 @@ const CartProvider = ({ children }) => {
         // check if product is already in the cart
         const productExist = prevCartList?.find(product => product?.id == productId);
 
+        let newCartList = [];
+
         if (!prevCartList) {
-            const newCartList = [{ id: productId, count: count }];
+            newCartList = [{ id: productId, count: count }];
             localStorage.setItem('productsCart', JSON.stringify(newCartList));
         } else {
             if (productExist) {
-                const newCartList = prevCartList.map(product => {
+                newCartList = prevCartList.map(product => {
                     if (product.id == productId) {
                         product.count = count
                         return product;
@@ -38,16 +39,16 @@ const CartProvider = ({ children }) => {
                 });
                 localStorage.setItem('productsCart', JSON.stringify(newCartList));
             } else {
-                const newCartList = [...prevCartList, { id: productId, count: count }];
+                newCartList = [...prevCartList, { id: productId, count: count }];
                 localStorage.setItem('productsCart', JSON.stringify(newCartList));
             }
         }
-        setActualProduct()
+        setActualProduct(newCartList);
     };
 
     // update cart in local storage
     const updateLocalStorage = (productId, count) => {
-        setLocalStorage(productId, count)
+        setLocalStorage(productId, count);
     };
 
     // remove product from cart and update local storage
@@ -55,29 +56,30 @@ const CartProvider = ({ children }) => {
         const prevCartList = getLocalStorage();
         const newCartList = prevCartList.filter(product => product.id != productId);
         localStorage.setItem('productsCart', JSON.stringify(newCartList));
-        setActualProduct()
-    }
-    // set actual product
-    const setActualProduct = () => {
-        const localStorageCart = getLocalStorage();
-        const actualCartProducts = [];
+        setActualProduct(newCartList);
+    };
 
+    // set actual product
+    const setActualProduct = (localStorageCart) => {
+        const actualCartProducts = [];
         // get actual from products by filtering cart products id
-        localStorageCart.forEach(item => {
-            products.forEach(product => {
+        localStorageCart?.forEach(item => {
+            products?.forEach(product => {
                 if (item.id == product.id) {
-                    actualCartProducts.push(product)
+                    actualCartProducts.push({ ...product, count: item.count })
                 }
             })
         })
-        setCartProducts(actualCartProducts);
+        setCart(actualCartProducts);
+
     }
-
     useEffect(() => {
-        setActualProduct()
-    }, [])
+        const localStorageCart = getLocalStorage()
+        setActualProduct(localStorageCart)
+    }, [products])
 
-    return <CartContext.Provider value={{ cartProducts, removeProduct, updateLocalStorage, setActualProduct }}>
+
+    return <CartContext.Provider value={{ cart, updateLocalStorage, removeProduct, getLocalStorage }}>
         {children}
     </CartContext.Provider>
 }

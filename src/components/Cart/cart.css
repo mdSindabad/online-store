@@ -1,8 +1,6 @@
-.cart-item {
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgb(88, 87, 87);
-    padding: 2rem 0.5rem;
-    margin-bottom: 0.2rem;
+.cart-items {
+    height: 80vh;
+    overflow: scroll;
 }
 .cart-total {
     border-radius: 5px;

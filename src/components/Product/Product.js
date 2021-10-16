@@ -7,7 +7,7 @@ import './product.css';
 const Product = ({ data }) => {
     const history = useHistory();
 
-    const { id, image, title, description, category, price, rating } = data;
+    const { id, image, title, category, price, rating } = data;
 
     const goToDetails = () => {
         history.push(`/details/${id}`);
