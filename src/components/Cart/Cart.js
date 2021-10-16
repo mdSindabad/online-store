@@ -52,7 +52,7 @@ const Cart = () => {
                             <p>Total:</p>
                             <p className='fw-bold'>$ {totalPrice}</p>
                         </div>
-                        <Button variant='primary'>Proceed to checkout</Button>
+                        <Button className={!localCart.length && "disabled"} variant='primary'>Proceed to checkout</Button>
                     </Col>
                 </Row>
             }

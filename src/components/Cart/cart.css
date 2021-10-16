@@ -1,10 +1,12 @@
-.cart-items {
-    height: 80vh;
-    overflow: scroll;
+@media only screen and (min-width: 768px) {
+    .cart-items {
+        height: 80vh;
+        overflow: scroll;
+    }
 }
 .cart-total {
     border-radius: 5px;
     box-shadow: 1px 1px 5px rgb(88, 87, 87);
     padding: 2rem 0;
-    max-height: 250px;
+    max-height: 275px;
 }
