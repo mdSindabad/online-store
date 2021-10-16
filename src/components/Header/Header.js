@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import './header.css';
 import useCart from '../../hooks/useCart';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
     // local state
@@ -11,6 +12,9 @@ const Header = () => {
 
     // cart context 
     const { cart, getLocalStorage } = useCart();
+
+    // auth context
+    const { user, logOut } = useAuth();
 
     useEffect(() => {
         const cartItems = getLocalStorage();
@@ -33,7 +37,11 @@ const Header = () => {
                             <FaShoppingCart className="fs-4" />
                             <Badge bg='danger' className='badge'>{count}</Badge>
                         </Nav.Link>
-                        <Nav.Link className="login" as={Link} to="/login">Login</Nav.Link>
+                        {
+                            user.email ?
+                                <Nav.Link onClick={logOut} className="logout">Logout</Nav.Link> :
+                                <Nav.Link className="login" as={Link} to="/login">Login</Nav.Link>
+                        }
                     </Nav >
                 </Navbar.Collapse>
             </Container >

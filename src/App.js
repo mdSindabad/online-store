@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import CartProvider from "./contexts/CartProvider";
 import AuthProvider from "./contexts/AuthProvider";
 import ProductsProvider from "./contexts/ProductsProvider";
+import PrivateRoute from "./utilities/PrivateRoute";
 
 function App() {
   return (
@@ -36,9 +37,9 @@ function App() {
               <Route path='/cart'>
                 <Cart />
               </Route>
-              <Route path='/login'>
+              <PrivateRoute path='/login'>
                 <Login />
-              </Route>
+              </PrivateRoute>
               <Route path='/details/:productId'>
                 <ProductDetails />
               </Route>
