@@ -1,9 +1,12 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { FaGoogle, FaFacebookSquare } from 'react-icons/fa';
+import useAuth from '../../hooks/useAuth';
 import './login.css';
 
 const Login = () => {
+    const { user, signInWithGoogle } = useAuth();
+    console.log(user)
     const handleFormSubmit = (e) => {
         e.preventDefault();
     };
@@ -25,7 +28,7 @@ const Login = () => {
                         <Button className="form-control" variant="success" type="submit">
                             Login
                         </Button>
-                        <Button className="d-flex align-items-center justify-content-center my-2 form-control" variant="dark" type="submit">
+                        <Button onClick={signInWithGoogle} className="d-flex align-items-center justify-content-center my-2 form-control" variant="secondary" type="submit">
                             <FaGoogle className="me-2" /> Google
                         </Button>
                         <Button className="d-flex align-items-center justify-content-center my-2 form-control" variant="primary" type="submit">

@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import useProducts from "../hooks/useProducts";
 
-
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
@@ -73,6 +72,8 @@ const CartProvider = ({ children }) => {
         setCart(actualCartProducts);
 
     }
+
+
     useEffect(() => {
         const localStorageCart = getLocalStorage()
         setActualProduct(localStorageCart)
