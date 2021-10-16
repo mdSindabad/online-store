@@ -15,6 +15,7 @@ const Header = () => {
 
     // auth context
     const { user, logOut } = useAuth();
+    console.log(user)
 
     useEffect(() => {
         const cartItems = getLocalStorage();
@@ -39,7 +40,10 @@ const Header = () => {
                         </Nav.Link>
                         {
                             user.email ?
-                                <Nav.Link onClick={logOut} className="logout">Logout</Nav.Link> :
+                                <>
+                                    <img style={{ width: "35px", height: "35px" }} className="ms-4 rounded-circle" src={user.photoURL} alt={user.displayName} />
+                                    <Nav.Link onClick={logOut} className="logout">Logout</Nav.Link>
+                                </> :
                                 <Nav.Link className="login" as={Link} to="/login">Login</Nav.Link>
                         }
                     </Nav >

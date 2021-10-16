@@ -2,7 +2,7 @@
     border-radius: 5px;
     box-shadow: 1px 1px 5px rgb(88, 87, 87);
     padding: 2rem 0.5rem;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
 }
 .cart-item img {
     width: 100%;
