@@ -15,7 +15,6 @@ const Header = () => {
 
     // auth context
     const { user, logOut } = useAuth();
-    console.log(user)
 
     useEffect(() => {
         const cartItems = getLocalStorage();
@@ -27,6 +26,10 @@ const Header = () => {
         <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg" className="sticky-top">
             <Container>
                 <Navbar.Brand as={Link} to="/">Online<span className="bg-warning px-1 text-dark rounded">Store</span></Navbar.Brand>
+                {
+                    user?.displayName && <p className="userName text-primary">{user?.displayName.split(" ")[1]}</p>
+                }
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     < Nav className="ms-auto" >
@@ -41,7 +44,10 @@ const Header = () => {
                         {
                             user.email ?
                                 <>
-                                    <img style={{ width: "35px", height: "35px" }} className="ms-4 rounded-circle" src={user.photoURL} alt={user.displayName} />
+                                    {
+                                        user.photoURL &&
+                                        <img style={{ width: "35px", height: "35px" }} className="ms-4 rounded-circle" src={user.photoURL} alt={user.displayName} />
+                                    }
                                     <Nav.Link onClick={logOut} className="logout">Logout</Nav.Link>
                                 </> :
                                 <Nav.Link className="login" as={Link} to="/login">Login</Nav.Link>
