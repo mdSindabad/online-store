@@ -33,6 +33,7 @@ const Header = () => {
                             <FaShoppingCart className="fs-4" />
                             <Badge bg='danger' className='badge'>{count}</Badge>
                         </Nav.Link>
+                        <Nav.Link className="login" as={Link} to="/login">Login</Nav.Link>
                     </Nav >
                 </Navbar.Collapse>
             </Container >

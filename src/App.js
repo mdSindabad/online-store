@@ -10,6 +10,7 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import NotFound from "./components/NotFound/NotFound";
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./contexts/CartContext";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path='/cart'>
               <Cart />
+            </Route>
+            <Route path='/login'>
+              <Login />
             </Route>
             <Route path='/details/:productId'>
               <ProductDetails />
